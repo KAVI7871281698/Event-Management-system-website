@@ -1,0 +1,63 @@
+<!-- booking_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Successful</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4a00e0, #8e2de2);
+            overflow: hidden;
+        }
+        .success {
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+            color: white;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+        .btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #4a00e0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn button:hover {
+            background-color: #e0e0e0;
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            font-style: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="success">Thank you, {{ request.session.name }}!</div>
+        <div class="success">Booking Successful! - By Your Event</div>
+        <div class="btn"><button><a href="/index">Go To Home </a></button></div>
+    </div>
+</body>
+</html>

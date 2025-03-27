@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c91e1e;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #333;
+            color: rgb(219, 213, 213);
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: purple;
+            padding: 10px;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        .sidebar a:hover {
+            background: #575757;
+        }
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .dashboard .card {
+            width: 22%;
+            text-align: center;
+        }
+        .btn {
+            padding: 10px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #575757;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout2">Logout</a>
+    </div>
+
+    <div class="content">
+        <h1>Admin Dashboard</h1>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>{{ total_customer }}</p>
+                <a href="/dashboard_customer" class="btn">View Users</a>
+            </div>
+            <div class="card">
+                <h3>Total Events</h3>
+                <p>{{ total_event }}</p>
+                <a href="/dashboard_event" class="btn">View Bookings</a>
+            </div>
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>{{ total_orders }}</p>
+                <a href="/order_dashboard" class="btn">View Bookings</a>
+            </div>
+            <div class="card">
+                <h3>Total Reviews</h3>
+                <p>{{ total_review }}</p>
+                <a href="/dashboard_review" class="btn">View Reports</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

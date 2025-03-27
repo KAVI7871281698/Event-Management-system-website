@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url("{% static 'img/login.jpeg' %}") no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            background-color: rgba(74, 0, 224, 0.9);
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .navbar li {
+            display: inline;
+        }
+        .navbar li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .navbar li a:hover {
+            background-color: #6a00e0;
+            border-radius: 5px;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4a00e0;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <ul class="navbar">
+        <li><a href="/login"><img src="{% static 'img/login.jpeg' %}" alt="Logo"></a></li>
+        <li><a href="#">{{ request.session.name }}</a></li>
+        <li><a href="/index">HOME🏠</a></li>
+        <li><a href="#">REVIEWS</a></li>        
+        <li><a href="/login">ACCOUNT👤</a></li>
+        <li><a href="#">CONTACT US📞</a></li>
+    </ul>
+
+    <!-- Booking Table -->
+    <h1 style="text-align: center; color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Booking Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Package</th>
+                <th>Features</th>
+                <th>Event Date</th>
+                <th>Event Locations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in bookings %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.plans }}</td>
+                <td>{{ i.features }}</td>
+                <td>{{ i.event_date }}</td>
+                <td>{{ i.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography</title>
+    <link rel="stylesheet" href="{% static 'order.css' %}">  
+</head>
+<style>
+    /* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s infinite ease-in-out;
+}
+
+/* Background Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Order Form Container */
+.order-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background: #ff758c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #ff506e;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .order-container {
+        width: 90%;
+    }
+}
+
+</style>
+<body>
+    <div class="background-animation">  <!-- Background Animation -->
+    
+    <div class="order-container">
+        <h2>Order Package</h2>
+        
+        <form method="POST" action="/confirm_order/{{ orders.id }}/" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ email }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="package">Selected Package</label>
+                <input type="text" id="package" name="package" value="{{ orders.package_name }}" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="features">Features</label>
+                <textarea id="features" name="features" rows="6" readonly>{{ orders.features }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Event Date</label>
+                <input type="date" id="address" class="address" name="date" placeholder="Enter date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Event Location</label>
+                <input type="text" id="address" class="address" name="address" placeholder="Enter address" required>
+            </div>
+
+            <button type="submit" class="btn">Confirm Order</button>
+        </form>
+    </div>
+    </div> 
+</body>
+</html>

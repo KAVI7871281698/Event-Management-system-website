@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <a href="/dashboard"><li>Dashboard</li></a>
+            <a href="/dashboard_customer"><li>Customer</li></a>
+            <a href="/dashboard_event"><li>Events</li></a>
+            <a href="/order_dashboard"><li>Orders</li></a>
+            <a href="/dashboard_review"><li>Reviews</li></a>
+            <li><a href="/logout2"><i class="fas fa-sign-out-alt"></i> Exit</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="navbar">
+            <h1>Customer List</h1>
+        </div>
+        <div class="orders-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>address</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in see %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.address }}</td>
+                        <td>{{ i.mobile }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: white;
+    }
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        background: #1e1e1e;
+        padding: 20px;
+    }
+    .sidebar h2 {
+        text-align: center;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+    .sidebar ul li {
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .sidebar ul li:hover, .sidebar ul .active {
+        background: #333;
+    }
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+    .navbar {
+        background: #1e1e1e;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    .orders-table {
+        margin-top: 20px;
+        background: #282828;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+    th {
+        background: #1e1e1e;
+    }
+    tr:nth-child(even) {
+        background: #333;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+</style>

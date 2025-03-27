@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Services</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    background: url("{% static 'img/login.jpeg' %}") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 30%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select, button {
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+button {
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: darkblue;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Catering Services</h2>
+        <form action="/services" method="POST">
+            {% csrf_token %} 
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" value="{{ request.session.name }}"><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ request.session.email }}" required><br>
+
+            <label for="Catering">Select packages:</label>
+            <select id="Catering" name="Catering">
+                <option value="Simple">Simple(6-8 items)</option>
+                <option value="Standerd">Standerd(10-12 items)</option>
+                <option value="Premium">Premium(15-20 items)</option>
+            </select><br>
+            <label for="type">Select type</label>
+            <select id="Veg(or)Non-veg" name="Veg(or)Non-veg">
+            <option value="veg">veg</option>
+            <option value="non-veg">non-veg</option>
+            </select><br>
+
+            <label for="date">Event Date:</label>
+            <input type="date" id="date" name="date" required><br>
+
+            <label for="Descrption">Descrpion:</label>
+            <input type="Descrption" id="Descrpion" name="Descrpion">
+
+            <button type="submit">Book Service</button>
+            <button type="submit"><a href="/index">Cancle</a></button>
+            <!-- <button type="submit">ok</button> -->
+        </form>
+</div>
+</body>
+</html>

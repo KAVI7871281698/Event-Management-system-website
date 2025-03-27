@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENT MANAGEMENT SYSTEM</title> 
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Background Image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("{% static 'img/login.jpeg' %}") no-repeat center center / cover;
+            filter: brightness(0.6);
+            z-index: -1;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar li {
+            list-style: none;
+            position: relative;
+        }
+
+        .navbar li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .navbar li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .navbar img {
+            width: 70px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+        }
+
+        .dropdown-menu a {
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Content Styling */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 3.5rem;
+            text-shadow: 3px 3px 7px black;
+            margin-bottom: 20px;
+        }
+
+        .content h2 a {
+            color: #ff9800;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.8rem;
+        }
+
+        .content h2 a:hover {
+            color: #ff5722;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .content h1 {
+                font-size: 2.5rem;
+            }
+            .content h2 a {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background"></div>
+
+    <!-- Navigation Bar -->
+    <ul class="navbar">
+        <li><a href="/login"><img src="{% static 'img/login.jpeg' %}" alt="Logo"></a></li>
+        <li><a href="#">{{ request.session.name }}</a></li>
+        <li><a href="/home">HOME🏠</a></li>
+        <li><a href="/reviews">REVIEWS</a></li>        
+        <li class="dropdown">
+            <a href="#">Package</a>
+            <div class="dropdown-menu">
+                <a href="/decoration">Decoration</a>
+                <a href="/photography">Photography</a>
+                <a href="/beauty">Beauty</a>
+                <a href="/catering">Catring services</a>
+            </div>
+        </li>        
+        <li><a href="/my_booking">MY Booking</a></li>        
+        <li class="dropdown">
+            <a href="#">ACCOUNT👤</a>
+            <div class="dropdown-menu">
+                <a href="/login">Login</a>
+                <a href="/logout">LOGOUT</a>
+                {% if "mariya@gmail.com" == request.session.email %}
+                <a href="/dashboard">Admin</a>
+                {% endif %}
+            </div>
+        </li>
+        <li><a href="#">CONTACT US📞</a></li>
+    </ul>
+
+    <!-- Content -->
+    <div class="content" style="margin-top: 70px;">
+        <h1>EVENT MANAGEMENT SYSTEM</h1>
+        <h2>EXPLORE US <a href="/services">➥</a></h2>
+    </div>
+</body>
+</html>
