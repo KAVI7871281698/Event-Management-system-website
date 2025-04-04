@@ -130,12 +130,13 @@ def confirm_order(request,id):
     if request.method == 'POST':
         location = request.POST['address']
         event_date = request.POST['date']
+        event_name = request.POST['event_name']
         orders = package.objects.get(id=id)
         name = request.session.get('name')
         email = request.session.get('email')
         plans = orders.package_name
         features = orders.features
-        store = order(location=location,event_date=event_date,name=name,email=email,plans=plans,features=features,event=orders)
+        store = order(location=location,event_date=event_date,name=name,email=email,plans=plans,features=features,event=orders,event_name=event_name)
         store.save()
     view = order.objects.filter(email=email).last()
     return render(request,'confirm_order.html',{'show':view})

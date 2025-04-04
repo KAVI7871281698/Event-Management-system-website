@@ -45,6 +45,7 @@ class order(models.Model):
    plans = models.CharField(max_length=50) 
    location = models.TextField(null=True) 
    event_date = models.DateTimeField(null=True)
+   event_name = models.CharField(max_length=50, null=True)
    features = models.TextField(null=True) 
    event = models.ForeignKey(package, on_delete=models.CASCADE)  
    order_date = models.DateTimeField(auto_now_add=True) 
